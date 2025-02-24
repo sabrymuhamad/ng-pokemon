@@ -1,0 +1,45 @@
+@tailwind base;
+
+@layer base {
+    h1 {
+        @apply pk-text-5xl pk-font-semibold pk-text-black;
+    }
+
+    h2 {
+        @apply pk-text-3xl pk-font-semibold pk-text-black;
+    }
+
+    h3 {
+        @apply pk-text-2xl pk-font-semibold pk-text-black;
+    }
+
+    h4 {
+        @apply pk-text-lg pk-text-black pk-font-bold;
+    }
+
+    h5 {
+        @apply pk-text-base pk-text-black;
+    }
+
+    h6 {
+        @apply pk-text-sm;
+    }
+}
+
+@tailwind components;
+
+@layer components {
+    .flex-center {
+        @apply pk-flex pk-items-center;
+    }
+    .card {
+        @apply pk-bg-white pk-border pk-border-borderColor pk-rounded-xl pk-p-6 max-md:pk-p-2;
+
+        .card-header {
+            @apply pk-flex pk-items-center pk-justify-between;
+        }
+    }
+
+}
+
+@tailwind utilities;
