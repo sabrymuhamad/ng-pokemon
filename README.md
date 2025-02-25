@@ -7,7 +7,8 @@ This is a Pokemon app built with **Angular 19**, using the **PokeAPI** to displa
 - Search for Pokemon by name
 - Infinite scrolling to load more Pokemon
 - View detailed Pokemon stats, abilities, and types
-- Uses a **caching mechanism** to store Pokemon details, reducing API calls.
+- Uses a caching mechanism to store Pokemon details, reducing API calls.
+- Interceptors for error handling as well as showing loading spinner.
 
 
 ## Technologies Used
@@ -22,15 +23,15 @@ This is a Pokemon app built with **Angular 19**, using the **PokeAPI** to displa
 ## Project Structure
 - src/
 - app/
--   ├── admin/pokemons/          # Pokémon components
+-   ├── admin/pokemons/           # Pokemon components
 -    ├── shared/                  # Shared components
 -    ├── services/                # API services
 -    ├── core/                    # Core components (header/footer)
 -    ├── helpers/models/          # Interfaces & models
 -    ├── helpers/interceptors/    # Interceptors
 -    ├── helpers/enums/           # Enums
-- -- assets/                      # SCSS
-- -- styles.scss                  # Global styles
+- assets/                         # SCSS
+- styles.scss                     # Global styles
 
 
 ## Installation
