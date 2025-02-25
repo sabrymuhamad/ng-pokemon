@@ -1,12 +1,14 @@
 # Pokemon App
 
-This is a Pokémon app built with **Angular 19**, using the **PokeAPI** to display Pokémon details.
+This is a Pokemon app built with **Angular 19**, using the **PokeAPI** to display Pokémon details.
 
 ## Features
 - View a list of Pokemon with images
 - Search for Pokemon by name
 - Infinite scrolling to load more Pokemon
 - View detailed Pokemon stats, abilities, and types
+- Uses a **caching mechanism** to store Pokemon details, reducing API calls.
+
 
 ## Technologies Used
 - **Angular 19** (CLI 19.1.8)
@@ -15,6 +17,7 @@ This is a Pokémon app built with **Angular 19**, using the **PokeAPI** to displ
 - **Angular Materials** for UI Components
 - **CDK Virtual Scroll** for performance optimization
 - **PokeAPI** (https://pokeapi.co/)
+- **Unit Tests**: Includes unit tests for **Pokemon list** and **Pokemon details**.
 
 ## Project Structure
 - src/
