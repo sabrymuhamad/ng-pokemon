@@ -1,12 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { UtilityService } from './services';
+import { LoaderComponent } from './shared/loader/loader.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  imports: [RouterOutlet, LoaderComponent],
+  templateUrl: './app.component.html'
 })
 export class AppComponent {
-  title = 'ng-pokemon';
+  loaderIntr = inject(UtilityService);
+  title = 'Pokemon App';
 }

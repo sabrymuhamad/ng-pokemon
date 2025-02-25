@@ -16,7 +16,19 @@
     "moduleResolution": "bundler",
     "importHelpers": true,
     "target": "ES2022",
-    "module": "ES2022"
+    "module": "ES2022",
+    "paths": {
+      "@pokemon/models": ["./src/app/helpers/models"],
+      "@pokemon/services": ["./src/app/services"],
+      "@pokemon/enums": ["./src/app/helpers/enums"],
+      "@pokemon/guards": ["./src/app/helpers/guards"],
+      "@pokemon/pipes": ["./src/app/helpers/pipes"],
+      "@pokemon/interceptors": ["./src/app/helpers/interceptors"],
+      "@pokemon/directives": ["./src/app/helpers/directives"],
+      "@pokemon/shared/*": ["./src/app/shared/*"],
+      "@pokemon/admin/*": ["./src/app/admin/*"],
+      "@pokemon/core/*": ["./src/app/core/*"],
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
