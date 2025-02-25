@@ -3,18 +3,16 @@ import { POKE_STATE } from "@pokemon/enums";
 export interface IPokemon {
     name: string;
     url: string;
-    image?: string;
 }
-export interface IPokemonDetails {
-    name: string;
-    url: string;
+export interface IPokemonDetails extends IPokemon{
+    id: number;
     sprites: ISprit;
     types: IType[],
     abilities: IAbility[];
     stats: IState[];
     height?: number;
     weight?: number;
-    hidden?:boolean;
+    hidden?: boolean;
 }
 
 interface ISprit {

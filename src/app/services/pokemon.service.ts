@@ -14,12 +14,8 @@ export class PokemonService extends APIService {
     return this.http.get<IApiResponse<IPokemon[]>>(`${this.apiUrl()}/${this._baseUrl}?offset=${pagination.offset}&limit=${pagination.limit}`, this.makeHeaders());
   }
 
-  findPokemonByName(pokeName: string): Observable<IApiResponse<IPokemon[]>> {
-    return this.http.get<IApiResponse<IPokemon[]>>(`${this.apiUrl()}/${this._baseUrl}/${pokeName}`, this.makeHeaders());
-  }
-
-  findPokemonById(id: number): Observable<IApiResponse<IPokemon[]>> {
-    return this.http.get<IApiResponse<IPokemon[]>>(`${this.apiUrl()}/${this._baseUrl}/${id}`, this.makeHeaders());
+  getPokemonById(id: number): Observable<IPokemonDetails> {
+    return this.http.get<IPokemonDetails>(`${this.apiUrl()}/${this._baseUrl}/${id}`, this.makeHeaders());
   }
 
   getPokemonDetails(pokemon: IPokemon): Observable<IPokemonDetails> {

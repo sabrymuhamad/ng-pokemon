@@ -1,0 +1,70 @@
+<ng-container *ngIf="pokemonDetail$ | async as POKEMON">
+    <app-breadcrumb [pageName]="'Pokemon: ' + POKEMON.name"></app-breadcrumb>
+
+
+    <div class="pk-max-w-3xl pk-mx-auto pk-p-4">
+
+        <div class="pk-bg-neutral-100 pk-shadow-xl pk-rounded-lg pk-p-6 pk-text-center pk-flex pk-gap-0 max-xl:pk-flex-col">
+
+
+            <div class="pk-flex-1">
+                <div class="pk-flex pk-justify-center">
+                    <img *ngIf="POKEMON?.sprites?.front_default" [src]="POKEMON.sprites.front_default"
+                        [alt]="POKEMON.name" class="pk-w-32 pk-h-32 sm:pk-w-40 sm:pk-h-40 pk-object-contain" />
+                </div>
+
+
+                <h2 class="pk-text-2xl sm:pk-text-3xl pk-font-bold pk-capitalize">
+                    {{ POKEMON?.name }} <span class="pk-text-gray-500">#{{ POKEMON?.id }}</span>
+                </h2>
+
+                <div class="pk-mt-4">
+                    <ul class="pk-flex pk-gap-3 pk-justify-center">
+                        <li><small>Weight</small> <span class="pk-font-bold pk-ps-3">{{POKEMON.weight}}</span></li>
+                        <li><small>Height</small> <span class="pk-font-bold pk-ps-3">{{POKEMON.height}}</span></li>
+                    </ul>
+                </div>
+
+
+                <div class="pk-mt-4">
+                    <h3 class="pk-text-lg pk-font-semibold">Types</h3>
+                    @for (type of POKEMON?.types; track $index) {
+                    <span class="pk-px-4 pk-py-1 pk-rounded-full pk-text-sm">
+                        {{ type.type.name }}
+                    </span>
+                    }
+                </div>
+
+
+                <div class="pk-mt-4">
+                    <h3 class="pk-text-lg pk-font-semibold">Abilities</h3>
+                    <ul class="pk-flex pk-flex-wrap pk-justify-center pk-gap-2 pk-mt-2">
+                        @for(ability of POKEMON?.abilities; track $index) {
+                        <li class="pk-bg-gray-100 pk-px-3 pk-py-1 pk-rounded pk-text-sm">
+                            {{ ability.ability.name }}
+                        </li>
+                        }
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="pk-flex-1 max-lg:pk-mt-4">
+                <h3 class="pk-text-lg pk-font-semibold">Stats</h3>
+                <div class="pk-mt-2">
+                    @for(stat of POKEMON?.stats; track $index) {
+                    <div class="pk-p-2 pk-bg-gray-50 pk-rounded-lg pk-text-sm pk-mb-2">
+                        <span class="pk-font-medium pk-capitalize">{{ stat.stat.name }}</span>
+                        <div class="pk-bg-gray-300 pk-h-2 pk-w-full pk-rounded pk-overflow-hidden pk-mt-1">
+                            <div class="pk-bg-blue-500 pk-h-2" [style.width.%]="stat.base_stat"></div>
+                        </div>
+                        <span class="pk-text-xs pk-text-gray-500">Base: {{ stat.base_stat }}</span>
+                    </div>
+                    }
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</ng-container>

@@ -7,15 +7,16 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { BreadcrumbComponent } from '@pokemon/shared/breadcrumb/breadcrumb.component';
 import { MatInputModule } from '@angular/material/input';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-poke-list',
-  imports: [MatButtonModule, MatIcon, BreadcrumbComponent, MatInputModule],
+  imports: [MatButtonModule, MatIcon, BreadcrumbComponent, MatInputModule, RouterLink],
   templateUrl: './poke-list.component.html'
 })
 export class PokeListComponent implements OnInit {
 
-  public pokeService = inject(PokemonService);
+  private pokeService = inject(PokemonService);
   private destroyRef = inject(DestroyRef);
   pokemonList: IPokemonDetails[] = [];
   pagination: IPagination = {
