@@ -19,15 +19,15 @@ This is a Pokémon app built with **Angular 19**, using the **PokeAPI** to displ
 ## Project Structure
 src/
 │-- app/
-│   │-- admin/pokemons              # Pokemon components
-│   │-- shared/                     # Shared components
-│   │-- services/                   # API services
-│   │-- core/                       # Core components (header / footer)
-│   │-- helpers/models/             # Interfaces & models
-│   │-- helpers/interceptors/       # Interceptors
-│   │-- helpers/enums/              # Enums
-│-- assets/                         # scss
-│-- styles.scss                      # Global styles
+│   ├── admin/pokemons/          # Pokémon components
+│   ├── shared/                  # Shared components
+│   ├── services/                # API services
+│   ├── core/                    # Core components (header/footer)
+│   ├── helpers/models/          # Interfaces & models
+│   ├── helpers/interceptors/    # Interceptors
+│   ├── helpers/enums/           # Enums
+│-- assets/                      # SCSS
+│-- styles.scss                  # Global styles
 
 
 ## 📦 Installation
