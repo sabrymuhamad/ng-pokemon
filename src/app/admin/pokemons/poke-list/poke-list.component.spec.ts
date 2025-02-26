@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { of } from 'rxjs';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
 import { PokemonService } from '@pokemon/services';
 import { IApiResponse, IPokemonDetails } from '@pokemon/models';
 import { PokeListComponent } from './poke-list.component';
@@ -38,7 +38,7 @@ describe('PokeListComponent', () => {
         expect(component).toBeTruthy();
     });
 
-    it('should fetch and display Pokémon list', fakeAsync(() => {
+    it('should fetch and display Pokemon list', fakeAsync(() => {
         const mockPokemonList: IApiResponse<{ name: string; url: string }[]> = {
             count: 200,
             next: 'nextPageApiUrl',
@@ -54,11 +54,11 @@ describe('PokeListComponent', () => {
             sprites: { front_default: 'bulbasaur.png' }
         } as any;
 
-        // Mocking cache to prevent undefined property access
-        mockPokemonService.cache = {
-            bulbasaur: { sprites: { front_default: 'bulbasaur.png' } } as any,
-            charmander: { sprites: { front_default: 'charmander.png' } } as any
-        };
+
+        mockPokemonService.cache = signal<IPokemonDetails[]>( [
+            { name: 'bulbasaur', sprites: { front_default: 'bulbasaur.png' } },
+            { name: 'charmander', sprites: { front_default: 'charmander.png' } }
+        ] as any) as any;
 
         mockPokemonService.getPokemonList.and.returnValue(of(mockPokemonList));
         mockPokemonService.getPokemonDetails.and.returnValue(of(mockPokemonDetails));
