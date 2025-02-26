@@ -1,0 +1,5 @@
+<button [routerLink]="['/admin/pokemon/details', pokemon().id]"
+    class="pk-w-[120px] pk-items-center pk-flex pk-flex-col pk-bg-neutral-100 pk-border pk-border-neutral-300 pk-p-3 pk-rounded-lg hover:pk-bg-white">
+    <img [src]="pokemon().sprites.front_default" [alt]="pokemon().name">
+    <span class="pk-capitalize pk-font-bold">{{ pokemon().name }}</span>
+</button>

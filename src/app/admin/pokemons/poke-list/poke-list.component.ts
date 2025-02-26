@@ -7,11 +7,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { BreadcrumbComponent } from '@pokemon/shared/breadcrumb/breadcrumb.component';
 import { MatInputModule } from '@angular/material/input';
-import { RouterLink } from '@angular/router';
+import { PokemonCardComponent } from '../pokemon-card/pokemon-card.component';
 
 @Component({
   selector: 'app-poke-list',
-  imports: [MatButtonModule, MatIcon, BreadcrumbComponent, MatInputModule, RouterLink],
+  imports: [MatButtonModule, MatIcon, BreadcrumbComponent, MatInputModule, PokemonCardComponent],
   templateUrl: './poke-list.component.html'
 })
 export class PokeListComponent implements OnInit {
@@ -29,8 +29,7 @@ export class PokeListComponent implements OnInit {
   pageName: string = 'Pokemon List';
   searchKeyword!: string;
   @HostListener('window:scroll', [])
-  onWindowScroll(event: any) {
-
+  onWindowScroll() {
     let allPageHeight = document.body.scrollHeight;
     let visiblePageHeight = document.body.clientHeight;
     let maxScroll = allPageHeight - visiblePageHeight;
@@ -53,10 +52,11 @@ export class PokeListComponent implements OnInit {
     this.pokeService.getPokemonList(this.pagination).pipe(
       takeUntilDestroyed(this.destroyRef),
       tap(res => this.totalElements = res.count),
-      map((res) => res.results.map((pokemon) => ({
+      map((res) => res.results.map((pokemon) => {
+        return {
         ...pokemon,
-        ...this.pokeService.cache[pokemon.name]
-      }))),
+        ...this.pokeService.cache().find(p => p.name === pokemon.name)!
+      }})),
       switchMap((pokemonList) =>
         forkJoin(
           pokemonList.map((pokemon) =>

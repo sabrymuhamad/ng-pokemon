@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { APIService } from './api.service';
 import { IApiResponse, IPagination, IPokemon, IPokemonDetails } from '@pokemon/models';
 import { map, Observable } from 'rxjs';
@@ -7,7 +7,7 @@ import { map, Observable } from 'rxjs';
 export class PokemonService extends APIService {
 
   private _baseUrl = 'v2/pokemon';
-  cache: { [key: string]: IPokemonDetails } = {};
+  cache = signal<IPokemonDetails[]>([]);
 
 
   getPokemonList(pagination: IPagination): Observable<IApiResponse<IPokemon[]>> {
@@ -19,16 +19,20 @@ export class PokemonService extends APIService {
   }
 
   getPokemonDetails(pokemon: IPokemon): Observable<IPokemonDetails> {
-    if (this.cache[pokemon.name]) {
+    const _pokemon = this.cache().find(p => p.name === pokemon.name);
+    if (_pokemon) {
       return new Observable((observer) => {
-        observer.next(this.cache[pokemon.name]);
+        observer.next(_pokemon);
         observer.complete();
       });
     }
 
     return this.http.get<any>(pokemon.url).pipe(
       map((data) => {
-        this.cache[pokemon.name] = data;
+        this.cache.update((val) => {
+          val =  [data, ...val]
+          return val
+        });
         return data;
       })
     );
